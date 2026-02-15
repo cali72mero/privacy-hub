@@ -526,13 +526,11 @@
     <!-- Security Badge -->
     <div class="security-badge">
         <div class="security-icon"></div>
-        <span>100% Privacy Protected</span>
-    </div>
+        <span>100% Privacy Protected</span>\n    </div>
 
     <!-- Header -->
     <header>
-        <div class="logo">🔐</div>
-        <h1>Privacy Hub</h1>
+        <div class="logo">🔐</div>\n        <h1>Privacy Hub</h1>
         <p class="subtitle">Deine zentrale Anlaufstelle für Datenschutz & Sicherheit</p>
         
         <div class="warning-banner">
@@ -612,8 +610,7 @@
                     
                     <div class="tool-tags">
                         <span class="tag">🔒 AES-256</span>
-                        <span class="tag">🗂️ Dateien</span>
-                        <span class="tag">🔑 Keyfile</span>
+                        <span class="tag">🗂️ Dateien</span>\n                        <span class=\"tag\">🔑 Keyfile</span>
                     </div>
                     
                     <a href="https://cali72mero.github.io/neon-shield/" class="tool-button" target="_blank">
@@ -671,6 +668,23 @@
                         ➡️ Jetzt nutzen
                     </a>
                 </div>
+
+                <!-- Tool 5: Shadow Stego -->
+                <div class="tool-card" data-tags="steganographie verstecken verschlüsselung bilder">
+                    <span class="tool-icon">🕵️‍♂️</span>
+                    <h3>Shadow Stego</h3>
+                    <p>Verstecke geheime Nachrichten unsichtbar in Bildern. Doppelte Sicherheit durch AES-256 + Steganographie.</p>
+                    
+                    <div class="tool-tags">
+                        <span class="tag">🕵️ Hidden</span>
+                        <span class="tag">🔐 AES-256</span>
+                        <span class="tag">🖼️ Image</span>
+                    </div>
+                    
+                    <a href="https://cali72mero.github.io/shadow-stego/" class="tool-button" target="_blank">
+                        ➡️ Jetzt nutzen
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -712,7 +726,7 @@
             </div>
             
             <p style="color: var(--text-secondary); margin-top: 20px;">
-                Entwickelt von <strong style="color: var(--neon-primary);">cali72mero</strong><br>
+                Entwickelt von <strong style=\"color: var(--neon-primary);\">cali72mero</strong><br>
                 Open Source • Privacy First • Made with ❤️ in Deutschland
             </p>
             
@@ -758,7 +772,7 @@
     </div>
 
     <!-- Loading Spinner -->
-    <div class="loading" id="loading">
+    <div class="loading" id=\"loading\">
         <div class="spinner"></div>
     </div>
 
@@ -776,8 +790,7 @@
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const description = card.querySelector('p').textContent.toLowerCase();
                 
-                const matches = tags.includes(searchTerm) || 
-                               title.includes(searchTerm) || 
+                const matches = tags.includes(searchTerm) || \n                               title.includes(searchTerm) || 
                                description.includes(searchTerm);
                 
                 if (matches || searchTerm === '') {
@@ -823,8 +836,7 @@
         // Uncomment if you want to prevent right-click
         // document.addEventListener('contextmenu', (e) => {
         //     e.preventDefault();
-        //     return false;
-        // });
+        //     return false;\n        // });
 
         // Log security info to console
         console.log('%c⚠️ SECURITY INFO', 'font-size: 20px; color: #00f2ff; font-weight: bold;');
