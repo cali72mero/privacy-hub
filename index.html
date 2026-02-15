@@ -319,62 +319,67 @@
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
-        /* Direct Link Styling - IMPROVED FOR COPYING */
-        .link-container {
+        /* NEW: Simpler Link Display */
+        .link-display {
             margin-top: auto;
-            display: flex;
-            gap: 5px;
-            align-items: stretch;
-        }
-
-        .direct-link {
-            flex-grow: 1;
-            display: block;
             background: var(--bg-card);
-            color: var(--neon-primary);
-            padding: 12px 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-family: monospace;
-            font-size: 0.9rem;
             border: 1px solid var(--neon-primary);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--neon-primary);
             text-align: center;
-            transition: all 0.3s;
             word-break: break-all;
-            user-select: all !important;
-            -webkit-user-select: all !important;
-            -moz-user-select: all !important;
-            cursor: text;
+            margin-bottom: 10px;
         }
 
-        .direct-link:hover {
-            background: rgba(0, 242, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        /* Button Container */
+        .button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
         
-        .copy-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--neon-accent);
-            color: var(--neon-accent);
-            padding: 12px 16px;
+        .action-btn {
+            padding: 14px 20px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            gap: 8px;
+            border: 2px solid;
         }
         
-        .copy-btn:hover {
+        .copy-btn-main {
+            background: var(--bg-card);
+            border-color: var(--neon-accent);
+            color: var(--neon-accent);
+        }
+        
+        .copy-btn-main:hover {
             background: var(--neon-accent);
             color: var(--bg-dark);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
         }
         
-        .copy-btn:active {
-            transform: scale(0.95);
+        .open-btn {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--neon-primary);
+            color: var(--neon-primary);
+        }
+        
+        .open-btn:hover {
+            background: var(--neon-primary);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
         }
 
         /* Privacy Stats */
@@ -666,11 +671,16 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/neon-shield/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/neon-shield/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/neon-shield/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/neon-shield/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/neon-shield/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/neon-shield/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
 
                 <!-- Tool 2: File Transfer -->
@@ -685,11 +695,16 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/-Sicherer-File-Transfer/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/-Sicherer-File-Transfer/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/-Sicherer-File-Transfer/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/-Sicherer-File-Transfer/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
 
                 <!-- Tool 3: Bild Kompressor -->
@@ -704,11 +719,16 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/-Bild-Kompressor-Pro/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/-Bild-Kompressor-Pro/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/-Bild-Kompressor-Pro/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/-Bild-Kompressor-Pro/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
 
                 <!-- Tool 4: Gaming Help -->
@@ -723,11 +743,16 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/gameing-help.io/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/gameing-help.io/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/gameing-help.io/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/gameing-help.io/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/gameing-help.io/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/gameing-help.io/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
 
                 <!-- Tool 5: Shadow Stego -->
@@ -742,11 +767,16 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/shadow-stego/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/shadow-stego/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/shadow-stego/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/shadow-stego/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/shadow-stego/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/shadow-stego/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
 
                 <!-- Tool 6: Password Fortress (NEW) -->
@@ -761,11 +791,16 @@
                         <span class="tag">☢️ Ultra-Mode</span>
                     </div>
                     
-                    <div class="link-container">
-                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/password-fortress/" onclick="this.select()">
-                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/password-fortress/', this)" title="Link kopieren">📋</button>
+                    <div class="link-display">https://cali72mero.github.io/password-fortress/</div>
+                    
+                    <div class="button-row">
+                        <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/password-fortress/', this)">
+                            📋 Link kopieren
+                        </button>
+                        <a href="https://cali72mero.github.io/password-fortress/" target="_blank" class="action-btn open-btn">
+                            ↗️ Öffnen
+                        </a>
                     </div>
-                    <a href="https://cali72mero.github.io/password-fortress/" target="_blank" style="display:block; text-align:center; margin-top:8px; color:var(--neon-accent); font-size:0.85rem; text-decoration:none; font-weight: 600;">↗️ Tool öffnen</a>
                 </div>
             </div>
         </section>
@@ -894,50 +929,48 @@
             document.getElementById('privacyModal').classList.remove('active');
         }
 
-        // Close modal on outside click
         document.getElementById('privacyModal').addEventListener('click', (e) => {
             if (e.target.id === 'privacyModal') {
                 closePrivacyModal();
             }
         });
 
-        // Copy Function with better feedback
-        function copyLink(text, btn) {
+        // IMPROVED Copy Function
+        function copyToClipboard(text, button) {
             navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✅';
-                btn.style.borderColor = 'var(--success)';
-                btn.style.color = 'var(--success)';
-                btn.style.background = 'rgba(46, 204, 113, 0.1)';
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '✅ Kopiert!';
+                button.style.background = 'rgba(46, 204, 113, 0.2)';
+                button.style.borderColor = 'var(--success)';
+                button.style.color = 'var(--success)';
                 
                 setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.borderColor = 'var(--neon-accent)';
-                    btn.style.color = 'var(--neon-accent)';
-                    btn.style.background = 'var(--bg-card)';
-                }, 2000);
+                    button.innerHTML = originalHTML;
+                    button.style.background = '';
+                    button.style.borderColor = '';
+                    button.style.color = '';
+                }, 2500);
             }).catch(err => {
                 console.error('Kopieren fehlgeschlagen:', err);
-                alert('Fehler beim Kopieren. Bitte markiere den Link manuell.');
+                button.innerHTML = '❌ Fehler';
+                setTimeout(() => {
+                    button.innerHTML = '📋 Link kopieren';
+                }, 2000);
             });
         }
 
-        // Security Status Check (simulated)
+        // Security Status
         window.addEventListener('load', () => {
             const securityBadge = document.querySelector('.security-badge');
-            
             setTimeout(() => {
                 securityBadge.style.background = 'rgba(46, 204, 113, 0.1)';
                 securityBadge.style.borderColor = 'var(--success)';
-                
-                const icon = securityBadge.querySelector('.security-icon');
-                icon.style.background = 'var(--success)';
+                document.querySelector('.security-icon').style.background = 'var(--success)';
             }, 1000);
         });
 
-        // Log security info
         console.log('%c⚠️ SECURITY INFO', 'font-size: 20px; color: #00f2ff; font-weight: bold;');
-        console.log('%cAlle Tools sind Open Source: https://github.com/cali72mero', 'font-size: 14px; color: #00ff88;');
+        console.log('%cOpen Source: https://github.com/cali72mero', 'font-size: 14px; color: #00ff88;');
     </script>
 </body>
 </html>
