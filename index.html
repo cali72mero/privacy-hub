@@ -319,7 +319,7 @@
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
-        /* NEW: Simpler Link Display */
+        /* IMPROVED: Selectable text link */
         .link-display {
             margin-top: auto;
             background: var(--bg-card);
@@ -332,6 +332,14 @@
             text-align: center;
             word-break: break-all;
             margin-bottom: 10px;
+            cursor: text;
+            user-select: text !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+        }
+        
+        .link-display:hover {
+            background: rgba(0, 242, 255, 0.05);
         }
 
         /* Button Container */
@@ -393,7 +401,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minspan(200px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
@@ -935,7 +943,7 @@
             }
         });
 
-        // IMPROVED Copy Function
+        // Copy Function
         function copyToClipboard(text, button) {
             navigator.clipboard.writeText(text).then(() => {
                 const originalHTML = button.innerHTML;
