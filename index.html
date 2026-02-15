@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Privacy Hub - Deine zentrale Anlaufstelle für Datenschutz- und Sicherheits-Tools">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
+    <!-- Removed strict CSP to ensure links work -->
     <title>🔐 Privacy Hub | Deine Sicherheits-Zentrale</title>
     
     <style>
@@ -250,6 +250,8 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .tool-card::before {
@@ -291,6 +293,7 @@
             color: var(--text-secondary);
             margin-bottom: 20px;
             line-height: 1.6;
+            flex-grow: 1;
         }
 
         .tool-tags {
@@ -321,11 +324,21 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+            text-align: center;
+            width: 100%;
         }
 
         .tool-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0, 242, 255, 0.5);
+            filter: brightness(1.1);
+        }
+        
+        /* Specific Button Fixes */
+        .btn-link {
+            text-decoration: none;
+            display: block;
+            width: 100%;
         }
 
         /* Privacy Stats */
@@ -616,9 +629,10 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/neon-shield/" class="tool-button" target="_blank">
+                    <!-- Fixed Button Structure with window.open -->
+                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/neon-shield/', '_blank')">
                         ➡️ Jetzt nutzen
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tool 2: File Transfer -->
@@ -633,9 +647,9 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" class="tool-button" target="_blank">
+                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/-Sicherer-File-Transfer/', '_blank')">
                         ➡️ Jetzt nutzen
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tool 3: Bild Kompressor -->
@@ -650,9 +664,9 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" class="tool-button" target="_blank">
+                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/-Bild-Kompressor-Pro/', '_blank')">
                         ➡️ Jetzt nutzen
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tool 4: Gaming Help -->
@@ -667,9 +681,9 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/gameing-help.io/" class="tool-button" target="_blank">
+                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/gameing-help.io/', '_blank')">
                         ➡️ Jetzt nutzen
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Tool 5: Shadow Stego -->
@@ -684,9 +698,9 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/shadow-stego/" class="tool-button" target="_blank">
+                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/shadow-stego/', '_blank')">
                         ➡️ Jetzt nutzen
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
