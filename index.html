@@ -30,14 +30,6 @@
             box-sizing: border-box;
         }
 
-        /* WICHTIG: Text-Selektion explizit aktivieren! */
-        body, p, h1, h2, h3, h4, span, div, a, li {
-            user-select: text !important;
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-        }
-
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             background: var(--bg-dark);
@@ -45,6 +37,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            user-select: text;
+            -webkit-user-select: text;
         }
 
         /* Animated Background */
@@ -319,27 +313,15 @@
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
-        /* IMPROVED: Selectable text link */
-        .link-display {
+        /* SIMPLE TEXT LINK - wie normaler Text */
+        .tool-link {
             margin-top: auto;
-            background: var(--bg-card);
-            border: 1px solid var(--neon-primary);
-            border-radius: 10px;
-            padding: 12px 15px;
-            font-family: monospace;
-            font-size: 0.85rem;
+            margin-bottom: 15px;
             color: var(--neon-primary);
-            text-align: center;
+            font-family: monospace;
+            font-size: 0.9rem;
             word-break: break-all;
-            margin-bottom: 10px;
-            cursor: text;
-            user-select: text !important;
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-        }
-        
-        .link-display:hover {
-            background: rgba(0, 242, 255, 0.05);
+            line-height: 1.6;
         }
 
         /* Button Container */
@@ -401,7 +383,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minspan(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
@@ -679,7 +661,7 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/neon-shield/</div>
+                    <p class="tool-link">https://cali72mero.github.io/neon-shield/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/neon-shield/', this)">
@@ -703,7 +685,7 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/-Sicherer-File-Transfer/</div>
+                    <p class="tool-link">https://cali72mero.github.io/-Sicherer-File-Transfer/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/-Sicherer-File-Transfer/', this)">
@@ -727,7 +709,7 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/-Bild-Kompressor-Pro/</div>
+                    <p class="tool-link">https://cali72mero.github.io/-Bild-Kompressor-Pro/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/-Bild-Kompressor-Pro/', this)">
@@ -751,7 +733,7 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/gameing-help.io/</div>
+                    <p class="tool-link">https://cali72mero.github.io/gameing-help.io/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/gameing-help.io/', this)">
@@ -775,7 +757,7 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/shadow-stego/</div>
+                    <p class="tool-link">https://cali72mero.github.io/shadow-stego/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/shadow-stego/', this)">
@@ -799,7 +781,7 @@
                         <span class="tag">☢️ Ultra-Mode</span>
                     </div>
                     
-                    <div class="link-display">https://cali72mero.github.io/password-fortress/</div>
+                    <p class="tool-link">https://cali72mero.github.io/password-fortress/</p>
                     
                     <div class="button-row">
                         <button class="action-btn copy-btn-main" onclick="copyToClipboard('https://cali72mero.github.io/password-fortress/', this)">
