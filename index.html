@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Privacy Hub - Deine zentrale Anlaufstelle für Datenschutz- und Sicherheits-Tools">
-    <!-- Removed strict CSP to ensure links work -->
     <title>🔐 Privacy Hub | Deine Sicherheits-Zentrale</title>
     
     <style>
@@ -334,11 +333,33 @@
             filter: brightness(1.1);
         }
         
-        /* Specific Button Fixes */
-        .btn-link {
-            text-decoration: none;
-            display: block;
+        /* Link Display Styling */
+        .link-display {
+            display: none;
+            margin-top: 15px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--neon-primary);
+        }
+        
+        .link-display input {
             width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--neon-primary);
+            font-family: monospace;
+            font-size: 0.9rem;
+            outline: none;
+            text-align: center;
+        }
+        
+        .link-display small {
+            display: block;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            margin-top: 5px;
         }
 
         /* Privacy Stats */
@@ -629,10 +650,13 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <!-- Fixed Button Structure with window.open -->
-                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/neon-shield/', '_blank')">
-                        ➡️ Jetzt nutzen
+                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/neon-shield/')">
+                        ➡️ Link anzeigen
                     </button>
+                    <div class="link-display">
+                        <input type="text" readonly onclick="this.select()">
+                        <small>Link kopieren und öffnen</small>
+                    </div>
                 </div>
 
                 <!-- Tool 2: File Transfer -->
@@ -647,9 +671,13 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/-Sicherer-File-Transfer/', '_blank')">
-                        ➡️ Jetzt nutzen
+                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/-Sicherer-File-Transfer/')">
+                        ➡️ Link anzeigen
                     </button>
+                    <div class="link-display">
+                        <input type="text" readonly onclick="this.select()">
+                        <small>Link kopieren und öffnen</small>
+                    </div>
                 </div>
 
                 <!-- Tool 3: Bild Kompressor -->
@@ -664,9 +692,13 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/-Bild-Kompressor-Pro/', '_blank')">
-                        ➡️ Jetzt nutzen
+                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/-Bild-Kompressor-Pro/')">
+                        ➡️ Link anzeigen
                     </button>
+                    <div class="link-display">
+                        <input type="text" readonly onclick="this.select()">
+                        <small>Link kopieren und öffnen</small>
+                    </div>
                 </div>
 
                 <!-- Tool 4: Gaming Help -->
@@ -681,9 +713,13 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/gameing-help.io/', '_blank')">
-                        ➡️ Jetzt nutzen
+                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/gameing-help.io/')">
+                        ➡️ Link anzeigen
                     </button>
+                    <div class="link-display">
+                        <input type="text" readonly onclick="this.select()">
+                        <small>Link kopieren und öffnen</small>
+                    </div>
                 </div>
 
                 <!-- Tool 5: Shadow Stego -->
@@ -698,9 +734,13 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <button class="tool-button" onclick="window.open('https://cali72mero.github.io/shadow-stego/', '_blank')">
-                        ➡️ Jetzt nutzen
+                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/shadow-stego/')">
+                        ➡️ Link anzeigen
                     </button>
+                    <div class="link-display">
+                        <input type="text" readonly onclick="this.select()">
+                        <small>Link kopieren und öffnen</small>
+                    </div>
                 </div>
             </div>
         </section>
@@ -812,13 +852,31 @@
                                description.includes(searchTerm);
                 
                 if (matches || searchTerm === '') {
-                    card.style.display = 'block';
+                    card.style.display = 'flex';
                     card.style.animation = 'fadeIn 0.3s ease';
                 } else {
                     card.style.display = 'none';
                 }
             });
         });
+
+        // Show Link Function (New)
+        function showLink(btn, url) {
+            const card = btn.closest('.tool-card');
+            const display = card.querySelector('.link-display');
+            const input = display.querySelector('input');
+            
+            display.style.display = 'block';
+            input.value = url;
+            
+            // Auto-open in new tab immediately as fallback
+            window.open(url, '_blank');
+            
+            btn.textContent = '✅ Geöffnet';
+            setTimeout(() => {
+                btn.textContent = '➡️ Link anzeigen';
+            }, 2000);
+        }
 
         // Modal Functions
         function openPrivacyModal() {
@@ -849,13 +907,6 @@
                 icon.style.background = 'var(--success)';
             }, 1000);
         });
-
-        // Prevent right-click (optional security feature)
-        // Uncomment if you want to prevent right-click
-        // document.addEventListener('contextmenu', (e) => {
-        //     e.preventDefault();
-        //     return false;
-        // });
 
         // Log security info to console
         console.log('%c⚠️ SECURITY INFO', 'font-size: 20px; color: #00f2ff; font-weight: bold;');
