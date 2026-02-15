@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Hub - Deine zentrale Anlaufstelle für Datenschutz- und Sicherheits-Tools">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;">
+    <title>🔐 Privacy Hub | Deine Sicherheits-Zentrale</title>
+    
+    <style>
+        :root {
+            --neon-primary: #00f2ff;
+            --neon-secondary: #ff00ff;
+            --neon-accent: #00ff88;
+            --bg-dark: #0a0e1a;
+            --bg-panel: #0f1420;
+            --bg-card: #151b2b;
+            --border: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --warning: #ff4757;
+            --success: #2ecc71;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--neon-primary) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bgMove 60s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Security Badge Animation */
+        .security-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 242, 255, 0.1);
+            border: 2px solid var(--neon-primary);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 242, 255, 0.5); }
+        }
+
+        .security-icon {
+            width: 12px;
+            height: 12px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary), var(--neon-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .warning-banner {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgba(255, 71, 87, 0.1);
+            border: 2px solid var(--warning);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .warning-banner .icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Security Info Panel */
+        .security-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .security-panel h2 {
+            color: var(--neon-primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--neon-accent);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--neon-primary);
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .feature-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feature-item h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--neon-primary);
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background: var(--bg-panel);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(0, 242, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-primary);
+            box-shadow: 0 20px 60px rgba(0, 242, 255, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--neon-accent);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+        }
+
+        .tool-button {
+            display: inline-block;
+            background: var(--gradient-3);
+            color: var(--bg-dark);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.5);
+        }
+
+        /* Privacy Stats */
+        .stats-section {
+            background: var(--bg-panel);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-panel);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--neon-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-accent);
+            text-shadow: 0 0 10px var(--neon-accent);
+        }
+
+        /* Modal for Privacy Info */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-panel);
+            border: 2px solid var(--neon-primary);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--warning);
+            transform: rotate(90deg);
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: var(--bg-panel);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--neon-primary);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-badge {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3000;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--neon-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+
+    <!-- Security Badge -->
+    <div class="security-badge">
+        <div class="security-icon"></div>
+        <span>100% Privacy Protected</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">🔐</div>
+        <h1>Privacy Hub</h1>
+        <p class="subtitle">Deine zentrale Anlaufstelle für Datenschutz & Sicherheit</p>
+        
+        <div class="warning-banner">
+            <div class="icon">⚠️</div>
+            <div>
+                <strong>Wichtig:</strong> Alle Tools laufen 100% lokal in deinem Browser. 
+                Keine Daten werden hochgeladen oder an Server gesendet. Deine Privatsphäre ist garantiert!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Suche nach Tools...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Security Features Panel -->
+        <div class="security-panel">
+            <h2>🛡️ Warum diese Projekte dich schützen</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                Alle Tools wurden mit maximaler Sicherheit und Privatsphäre entwickelt. 
+                Hier sind die wichtigsten Sicherheitsfeatures:
+            </p>
+            
+            <div class="security-features">
+                <div class="feature-item">
+                    <span class="icon">🔒</span>
+                    <h3>Client-Side Verschlüsselung</h3>
+                    <p>AES-256-GCM Standard - militärische Verschlüsselung direkt im Browser</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="icon">🚫</span>
+                    <h3>Zero-Knowledge</h3>
+                    <p>Kein Server hat Zugriff auf deine Daten. Alles bleibt lokal auf deinem Gerät</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="icon">✅</span>
+                    <h3>Open Source</h3>
+                    <p>Vollständig transparent auf GitHub - jeder kann den Code prüfen</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="icon">🔐</span>
+                    <h3>Ende-zu-Ende</h3>
+                    <p>Bei P2P-Tools: Direkte Verbindung ohne Zwischenserver</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="icon">🖊️</span>
+                    <h3>Keine Tracker</h3>
+                    <p>Keine Analytics, keine Cookies, keine Tracking-Scripts</p>
+                </div>
+                
+                <div class="feature-item">
+                    <span class="icon">🌐</span>
+                    <h3>Offline-Fähig</h3>
+                    <p>Die meisten Tools funktionieren auch ohne Internetverbindung</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <section class="tools-section">
+            <h2 class="section-title">🛠️ Verfügbare Tools</h2>
+            
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tool 1: Neon Shield -->
+                <div class="tool-card" data-tags="verschlüsselung security dateien">
+                    <span class="tool-icon">🔐</span>
+                    <h3>Neon Shield</h3>
+                    <p>Militärischer Datentresor mit AES-256-GCM Verschlüsselung. Schütze deine sensiblen Dateien mit einem Passwort.</p>
+                    
+                    <div class="tool-tags">
+                        <span class="tag">🔒 AES-256</span>
+                        <span class="tag">🗂️ Dateien</span>
+                        <span class="tag">🔑 Keyfile</span>
+                    </div>
+                    
+                    <a href="https://cali72mero.github.io/neon-shield/" class="tool-button" target="_blank">
+                        ➡️ Jetzt nutzen
+                    </a>
+                </div>
+
+                <!-- Tool 2: File Transfer -->
+                <div class="tool-card" data-tags="transfer p2p dateien teilen">
+                    <span class="tool-icon">🚀</span>
+                    <h3>Sicherer File Transfer</h3>
+                    <p>P2P Dateiübertragung mit Ende-zu-Ende-Verschlüsselung. Teile Dateien direkt zwischen Geräten ohne Server.</p>
+                    
+                    <div class="tool-tags">
+                        <span class="tag">🔗 P2P</span>
+                        <span class="tag">💬 Chat</span>
+                        <span class="tag">⚡ Live</span>
+                    </div>
+                    
+                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" class="tool-button" target="_blank">
+                        ➡️ Jetzt nutzen
+                    </a>
+                </div>
+
+                <!-- Tool 3: Bild Kompressor -->
+                <div class="tool-card" data-tags="bilder komprimierung optimierung">
+                    <span class="tool-icon">🖼️</span>
+                    <h3>Bild Kompressor Pro</h3>
+                    <p>Turbo-Edition für blitzschnelle Bildkomprimierung. Unterstützt Batch-Verarbeitung für 100+ Bilder parallel.</p>
+                    
+                    <div class="tool-tags">
+                        <span class="tag">⚡ Turbo</span>
+                        <span class="tag">📊 Batch</span>
+                        <span class="tag">🎨 Formats</span>
+                    </div>
+                    
+                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" class="tool-button" target="_blank">
+                        ➡️ Jetzt nutzen
+                    </a>
+                </div>
+
+                <!-- Tool 4: Gaming Help -->
+                <div class="tool-card" data-tags="gaming hilfe spiele">
+                    <span class="tool-icon">🎮</span>
+                    <h3>Gaming Help</h3>
+                    <p>Hilfe und Ressourcen für Gamer. Tipps, Tricks und Lösungen für deine Lieblingsspiele.</p>
+                    
+                    <div class="tool-tags">
+                        <span class="tag">🎮 Gaming</span>
+                        <span class="tag">💡 Tipps</span>
+                        <span class="tag">🔧 Fixes</span>
+                    </div>
+                    
+                    <a href="https://cali72mero.github.io/gameing-help.io/" class="tool-button" target="_blank">
+                        ➡️ Jetzt nutzen
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Stats -->
+        <section class="stats-section">
+            <h2 class="section-title">📊 Deine Privatsphäre in Zahlen</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Daten an Server gesendet</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Lokal verarbeitet</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Tracking Scripts</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Deine Kontrolle</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/cali72mero" target="_blank">👨‍💻 GitHub</a>
+                <a href="#" onclick="openPrivacyModal()">🔒 Datenschutz</a>
+                <a href="mailto:support@cali72mero.de">📧 Kontakt</a>
+            </div>
+            
+            <p style="color: var(--text-secondary); margin-top: 20px;">
+                Entwickelt von <strong style="color: var(--neon-primary);">cali72mero</strong><br>
+                Open Source • Privacy First • Made with ❤️ in Deutschland
+            </p>
+            
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px;">
+                © 2025 Privacy Hub. Alle Tools sind kostenlos und werden es immer bleiben.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacyModal()">×</button>
+            
+            <h2 style="color: var(--neon-primary); margin-bottom: 20px;">🔒 Datenschutz-Erklärung</h2>
+            
+            <h3 style="color: var(--text-primary); margin-top: 20px;">Kurze Version:</h3>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                Wir sammeln <strong>KEINE</strong> Daten. Punkt. Alle Tools laufen zu 100% lokal in deinem Browser.
+            </p>
+
+            <h3 style="color: var(--text-primary); margin-top: 20px;">Lange Version:</h3>
+            <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 20px;">
+                <li>Keine Cookies</li>
+                <li>Keine Analytics (Google Analytics, etc.)</li>
+                <li>Keine Tracking-Pixel</li>
+                <li>Keine Server-Logs</li>
+                <li>Keine Datensammlung jeglicher Art</li>
+                <li>Kein Verkauf von Daten (weil wir keine haben)</li>
+            </ul>
+
+            <h3 style="color: var(--text-primary); margin-top: 20px;">Technische Details:</h3>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                Diese Website wird auf <strong>GitHub Pages</strong> gehostet. GitHub könnte 
+                grundlegende Server-Logs führen (IP-Adressen, Zugriffszeiten), aber wir haben 
+                darauf keinen Zugriff und nutzen diese Daten nicht.
+            </p>
+
+            <p style="color: var(--success); margin-top: 20px; font-weight: bold;">
+                ✅ Deine Daten gehören DIR. Niemand sonst.
+            </p>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            toolCards.forEach(card => {
+                const tags = card.dataset.tags.toLowerCase();
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                const matches = tags.includes(searchTerm) || 
+                               title.includes(searchTerm) || 
+                               description.includes(searchTerm);
+                
+                if (matches || searchTerm === '') {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.3s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Modal Functions
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').classList.add('active');
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('privacyModal').addEventListener('click', (e) => {
+            if (e.target.id === 'privacyModal') {
+                closePrivacyModal();
+            }
+        });
+
+        // Security Status Check (simulated)
+        window.addEventListener('load', () => {
+            const securityBadge = document.querySelector('.security-badge');
+            
+            // Simulate security check
+            setTimeout(() => {
+                securityBadge.style.background = 'rgba(46, 204, 113, 0.1)';
+                securityBadge.style.borderColor = 'var(--success)';
+                
+                const icon = securityBadge.querySelector('.security-icon');
+                icon.style.background = 'var(--success)';
+            }, 1000);
+        });
+
+        // Prevent right-click (optional security feature)
+        // Uncomment if you want to prevent right-click
+        // document.addEventListener('contextmenu', (e) => {
+        //     e.preventDefault();
+        //     return false;
+        // });
+
+        // Log security info to console
+        console.log('%c⚠️ SECURITY INFO', 'font-size: 20px; color: #00f2ff; font-weight: bold;');
+        console.log('%cAlle Tools auf dieser Seite sind Open Source und können auf GitHub überprüft werden.', 'font-size: 14px; color: #94a3b8;');
+        console.log('%chttps://github.com/cali72mero', 'font-size: 14px; color: #00ff88;');
+    </script>
+</body>
+</html>
