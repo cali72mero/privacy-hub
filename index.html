@@ -311,55 +311,27 @@
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
-        .tool-button {
+        /* Direct Link Styling */
+        .direct-link {
             display: inline-block;
-            background: var(--gradient-3);
-            color: var(--bg-dark);
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
-            text-align: center;
-            width: 100%;
-        }
-
-        .tool-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.5);
-            filter: brightness(1.1);
-        }
-        
-        /* Link Display Styling */
-        .link-display {
-            display: none;
-            margin-top: 15px;
-            background: rgba(0,0,0,0.5);
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid var(--neon-primary);
-        }
-        
-        .link-display input {
-            width: 100%;
-            background: transparent;
-            border: none;
+            background: var(--bg-card);
             color: var(--neon-primary);
+            padding: 12px 15px;
+            border-radius: 10px;
+            text-decoration: none;
             font-family: monospace;
             font-size: 0.9rem;
-            outline: none;
+            border: 1px solid var(--neon-primary);
             text-align: center;
+            width: 100%;
+            transition: all 0.3s;
+            word-break: break-all;
         }
-        
-        .link-display small {
-            display: block;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.7rem;
-            margin-top: 5px;
+
+        .direct-link:hover {
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Privacy Stats */
@@ -650,13 +622,9 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/neon-shield/')">
-                        ➡️ Link anzeigen
-                    </button>
-                    <div class="link-display">
-                        <input type="text" readonly onclick="this.select()">
-                        <small>Link kopieren und öffnen</small>
-                    </div>
+                    <a href="https://cali72mero.github.io/neon-shield/" class="direct-link" target="_blank">
+                        🔗 cali72mero.github.io/neon-shield/
+                    </a>
                 </div>
 
                 <!-- Tool 2: File Transfer -->
@@ -671,13 +639,9 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/-Sicherer-File-Transfer/')">
-                        ➡️ Link anzeigen
-                    </button>
-                    <div class="link-display">
-                        <input type="text" readonly onclick="this.select()">
-                        <small>Link kopieren und öffnen</small>
-                    </div>
+                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" class="direct-link" target="_blank">
+                        🔗 cali72mero.github.io/-Sicherer-File-Transfer/
+                    </a>
                 </div>
 
                 <!-- Tool 3: Bild Kompressor -->
@@ -692,13 +656,9 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/-Bild-Kompressor-Pro/')">
-                        ➡️ Link anzeigen
-                    </button>
-                    <div class="link-display">
-                        <input type="text" readonly onclick="this.select()">
-                        <small>Link kopieren und öffnen</small>
-                    </div>
+                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" class="direct-link" target="_blank">
+                        🔗 cali72mero.github.io/-Bild-Kompressor-Pro/
+                    </a>
                 </div>
 
                 <!-- Tool 4: Gaming Help -->
@@ -713,13 +673,9 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/gameing-help.io/')">
-                        ➡️ Link anzeigen
-                    </button>
-                    <div class="link-display">
-                        <input type="text" readonly onclick="this.select()">
-                        <small>Link kopieren und öffnen</small>
-                    </div>
+                    <a href="https://cali72mero.github.io/gameing-help.io/" class="direct-link" target="_blank">
+                        🔗 cali72mero.github.io/gameing-help.io/
+                    </a>
                 </div>
 
                 <!-- Tool 5: Shadow Stego -->
@@ -734,13 +690,9 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <button class="tool-button" onclick="showLink(this, 'https://cali72mero.github.io/shadow-stego/')">
-                        ➡️ Link anzeigen
-                    </button>
-                    <div class="link-display">
-                        <input type="text" readonly onclick="this.select()">
-                        <small>Link kopieren und öffnen</small>
-                    </div>
+                    <a href="https://cali72mero.github.io/shadow-stego/" class="direct-link" target="_blank">
+                        🔗 cali72mero.github.io/shadow-stego/
+                    </a>
                 </div>
             </div>
         </section>
@@ -859,24 +811,6 @@
                 }
             });
         });
-
-        // Show Link Function (New)
-        function showLink(btn, url) {
-            const card = btn.closest('.tool-card');
-            const display = card.querySelector('.link-display');
-            const input = display.querySelector('input');
-            
-            display.style.display = 'block';
-            input.value = url;
-            
-            // Auto-open in new tab immediately as fallback
-            window.open(url, '_blank');
-            
-            btn.textContent = '✅ Geöffnet';
-            setTimeout(() => {
-                btn.textContent = '➡️ Link anzeigen';
-            }, 2000);
-        }
 
         // Modal Functions
         function openPrivacyModal() {
