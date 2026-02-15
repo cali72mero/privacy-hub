@@ -311,9 +311,17 @@
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
-        /* Direct Link Styling */
+        /* Direct Link Styling - IMPROVED FOR COPYING */
+        .link-container {
+            margin-top: auto;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
         .direct-link {
-            display: inline-block;
+            flex-grow: 1;
+            display: block;
             background: var(--bg-card);
             color: var(--neon-primary);
             padding: 12px 15px;
@@ -323,15 +331,41 @@
             font-size: 0.9rem;
             border: 1px solid var(--neon-primary);
             text-align: center;
-            width: 100%;
             transition: all 0.3s;
             word-break: break-all;
+            user-select: all; /* Makes text easier to select */
+            -webkit-user-select: all;
+            cursor: pointer;
         }
 
         .direct-link:hover {
             background: rgba(0, 242, 255, 0.1);
             box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
             transform: translateY(-2px);
+        }
+        
+        .copy-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--neon-accent);
+            color: var(--neon-accent);
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .copy-btn:hover {
+            background: var(--neon-accent);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn:active {
+            transform: scale(0.95);
         }
 
         /* Privacy Stats */
@@ -622,9 +656,11 @@
                         <span class="tag">🔑 Keyfile</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/neon-shield/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/neon-shield/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/neon-shield/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/neon-shield/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/neon-shield/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
 
                 <!-- Tool 2: File Transfer -->
@@ -639,9 +675,11 @@
                         <span class="tag">⚡ Live</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/-Sicherer-File-Transfer/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/-Sicherer-File-Transfer/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/-Sicherer-File-Transfer/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/-Sicherer-File-Transfer/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
 
                 <!-- Tool 3: Bild Kompressor -->
@@ -656,9 +694,11 @@
                         <span class="tag">🎨 Formats</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/-Bild-Kompressor-Pro/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/-Bild-Kompressor-Pro/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/-Bild-Kompressor-Pro/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/-Bild-Kompressor-Pro/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
 
                 <!-- Tool 4: Gaming Help -->
@@ -673,9 +713,11 @@
                         <span class="tag">🔧 Fixes</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/gameing-help.io/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/gameing-help.io/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/gameing-help.io/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/gameing-help.io/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/gameing-help.io/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
 
                 <!-- Tool 5: Shadow Stego -->
@@ -690,9 +732,11 @@
                         <span class="tag">🖼️ Image</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/shadow-stego/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/shadow-stego/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/shadow-stego/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/shadow-stego/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/shadow-stego/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
 
                 <!-- Tool 6: Password Fortress (NEW) -->
@@ -707,9 +751,11 @@
                         <span class="tag">☢️ Ultra-Mode</span>
                     </div>
                     
-                    <a href="https://cali72mero.github.io/password-fortress/" class="direct-link" target="_blank">
-                        🔗 cali72mero.github.io/password-fortress/
-                    </a>
+                    <div class="link-container">
+                        <input type="text" class="direct-link" readonly value="https://cali72mero.github.io/password-fortress/" onclick="this.select()">
+                        <button class="copy-btn" onclick="copyLink('https://cali72mero.github.io/password-fortress/', this)" title="Kopieren">📋</button>
+                    </div>
+                    <a href="https://cali72mero.github.io/password-fortress/" target="_blank" style="display:block; text-align:center; margin-top:5px; color:var(--text-secondary); font-size:0.8rem; text-decoration:none;">↗️ Öffnen</a>
                 </div>
             </div>
         </section>
@@ -844,6 +890,22 @@
                 closePrivacyModal();
             }
         });
+
+        // Copy Function
+        function copyLink(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅';
+                btn.style.borderColor = 'var(--success)';
+                btn.style.color = 'var(--success)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.borderColor = 'var(--neon-accent)';
+                    btn.style.color = 'var(--neon-accent)';
+                }, 2000);
+            });
+        }
 
         // Security Status Check (simulated)
         window.addEventListener('load', () => {
